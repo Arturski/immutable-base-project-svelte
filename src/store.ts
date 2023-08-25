@@ -3,8 +3,8 @@ import {config, passport} from "@imtbl/sdk";
 
 const passportConfig = {
   clientId: "GAvERIbbGXUYVWqlZLZ9KZ2p1LvRaHNv",
-  redirectUri: "https://main--timely-alpaca-3c5221.netlify.app//login",
-  logoutRedirectUri: "https://main--timely-alpaca-3c5221.netlify.app/",
+  redirectUri: "https://main--timely-alpaca-3c5221.netlify.app/login",
+  logoutRedirectUri: "https://main--timely-alpaca-3c5221.netlify.app",
   scope: "transact openid offline_access email",
   audience: "platform_api",
   baseConfig: new config.ImmutableConfiguration({
