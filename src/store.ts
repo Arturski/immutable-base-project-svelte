@@ -2,9 +2,9 @@ import { writable } from "svelte/store";
 import {config, passport} from "@imtbl/sdk";
 
 const passportConfig = {
-  clientId: "nfdaNfQBN2C4mq0HR3oxHNlZoC8cOtQZ",
-  redirectUri: "https://main--scintillating-lamington-c5e3fb.netlify.app/login",
-  logoutRedirectUri: "https://main--scintillating-lamington-c5e3fb.netlify.app/",
+  clientId: "GAvERIbbGXUYVWqlZLZ9KZ2p1LvRaHNv",
+  redirectUri: "https://main--timely-alpaca-3c5221.netlify.app//login",
+  logoutRedirectUri: "https://main--timely-alpaca-3c5221.netlify.app/",
   scope: "transact openid offline_access email",
   audience: "platform_api",
   baseConfig: new config.ImmutableConfiguration({
