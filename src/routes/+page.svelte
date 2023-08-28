@@ -42,11 +42,6 @@
 </div>
 
 <style>
-  /* Your styles */
-</style>
-
-
-<style>
   /* Dark theme styles */
   :global(body) {
     background-color: #1c1c1c;
