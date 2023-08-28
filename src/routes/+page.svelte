@@ -3,37 +3,33 @@
 
   import { login } from "../auth";
 
-  let isLoggedIn: boolean = false;
-  let address: string | null = null;
   let jsonData: string | null = null;
 
   onMount(() => {
-    jsonData = getJsonData();
-  });
-
-  function getJsonData(): string | null {
+    const keyPrefix = "oidc.user:https://auth.immutable.com";
     if (typeof sessionStorage !== "undefined") {
       for (let i = 0; i < sessionStorage.length; i++) {
         const key = sessionStorage.key(i);
-        if (key && key.startsWith("oidc.user:https://auth.immutable.com")) {
-          isLoggedIn = true;
-          const fullData = sessionStorage.getItem(key);
-          if (fullData) {
-            const parsedData = JSON.parse(fullData);
-            return JSON.stringify(parsedData.profile, null, 2);
+        if (key && key.startsWith(keyPrefix)) {
+          const sessionData = sessionStorage.getItem(key);
+          if (sessionData) {
+            try {
+              jsonData = JSON.stringify(JSON.parse(sessionData), null, 2);
+            } catch (error) {
+              console.error("Error parsing session data:", error);
+            }
           }
-          break;
+          break; // No need to continue once the desired key is found
         }
       }
     }
-    return null;
-  }
+  });
 </script>
 
 <div class="container dark-theme">
   <h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
   {#if jsonData}
-    <pre>{@html JSON.stringify(JSON.parse(jsonData), null, 2)}</pre>
+    <pre>{@html jsonData}</pre>
   {/if}
   <button on:click={login}>
     Sign In with
@@ -44,6 +40,11 @@
     />
   </button>
 </div>
+
+<style>
+  /* Your styles */
+</style>
+
 
 <style>
   /* Dark theme styles */
