@@ -1,8 +1,5 @@
-<script>
-
-  </script>
-<nav>
-	<a href="/">home</a>
-</nav>
-  
-  <slot></slot>
+<script></script>
+<!-- 
+<nav><a href="/">home</a></nav> 
+-->
+<slot></slot>
