@@ -24,15 +24,24 @@
       }
     }
   });
+
+  function encodeHtml(value: any) {
+    return value
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;")
+      .replace(/\n/g, "<br>")
+      .replace(/\s/g, "&nbsp;");
+  }
 </script>
 
 <div class="container dark-theme">
   <h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
   {#if jsonData}
   <pre>
-    <code>
-      {@html jsonData}
-    </code>
+    <code>{@html encodeHtml(jsonData)}</code>
   </pre>
   {/if}
   <button on:click={login}>
