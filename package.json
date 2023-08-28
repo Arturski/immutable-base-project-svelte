@@ -12,7 +12,6 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@imtbl/sdk": "^0.13.0",
 		"@rollup/plugin-commonjs": "^25.0.4",
 		"@rollup/plugin-json": "^6.0.0",
 		"@rollup/plugin-node-resolve": "^15.2.1",
@@ -42,6 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@magic-ext/oidc": "^2.3.1"
+		"@magic-ext/oidc": "^2.3.1",
+		"@imtbl/sdk": "^0.13.0"
 	}
 }
