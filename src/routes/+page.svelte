@@ -1,41 +1,9 @@
 <script lang="ts">
-  import { login } from "../auth";
-
-  let isLoggedIn: boolean = false;
-  let address: string | null = null;
-  let jsonData: string | null = getJsonData();
-
-  function getJsonData(): string | null {
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i);
-      if (key && key.startsWith("oidc.user:https://auth.immutable.com")) {
-        isLoggedIn = true;
-        const fullData = sessionStorage.getItem(key);
-        if (fullData) {
-          const parsedData = JSON.parse(fullData);
-          return JSON.stringify(parsedData.profile, null, 2);
-        }
-        break;
-      }
-    }
-    return null;
-  }
 
 </script>
 
 <div class="container dark-theme">
   <h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
-  {#if jsonData}
-    <pre>{@html JSON.stringify(JSON.parse(jsonData), null, 2)}</pre>
-  {/if}
-  <button on:click={login}>
-    Sign In with
-    <img
-      src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
-      class="logo"
-      alt="IMX logo"
-    />
-  </button>
 </div>
 
 <style>
