@@ -29,7 +29,11 @@
 <div class="container dark-theme">
   <h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
   {#if jsonData}
-    <pre>{@html jsonData}</pre>
+  <pre>
+    <code>
+      {@html jsonData}
+    </code>
+  </pre>
   {/if}
   <button on:click={login}>
     Sign In with
