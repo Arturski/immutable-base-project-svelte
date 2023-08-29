@@ -38,7 +38,7 @@
 </script>
 
 <div class="container dark-theme">
-	<h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
+	<h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + Web3 Polyfills</h1>
 
 	{#if jsonData}
 		<button on:click={copyJsonToClipboard} class={showStatus ? 'hidden' : ''}>
