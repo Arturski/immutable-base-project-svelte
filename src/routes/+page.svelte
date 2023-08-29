@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
   import { login } from "../auth";
+  import { JsonView } from '@zerodevx/svelte-json-view'
 
   let jsonData: string | null = null;
+  let showStatus: boolean = false;
 
   onMount(() => {
     const keyPrefix = "oidc.user:https://auth.immutable.com";
@@ -14,44 +15,48 @@
           const sessionData = sessionStorage.getItem(key);
           if (sessionData) {
             try {
-              jsonData = JSON.stringify(JSON.parse(sessionData), null, 2);
+              jsonData = JSON.parse(sessionData);
             } catch (error) {
               console.error("Error parsing session data:", error);
             }
           }
-          break; // No need to continue once the desired key is found
+          break;
         }
       }
     }
   });
 
-  function encodeHtml(value: any) {
-    return value
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;")
-      .replace(/\n/g, "<br>")
-      .replace(/\s/g, "&nbsp;");
+  async function copyJsonToClipboard() {
+    if (jsonData) {
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(jsonData, null, 2));
+        showStatus = true;
+      } catch (error) {
+        console.error("Error copying to clipboard:", error);
+      }
+    }
   }
 </script>
 
 <div class="container dark-theme">
   <h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
   {#if jsonData}
-  <pre>
-    <code>{@html encodeHtml(jsonData)}</code>
-  </pre>
+    <JsonView {jsonData} />
+    <button
+      on:click={copyJsonToClipboard}
+      class={showStatus ? "hidden" : ""}
+    >
+      Sign In with
+      <img
+        src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
+        class="logo"
+        alt="IMX logo"
+      />
+    </button>
+    {#if showStatus}
+      <p class="status">Logged in. Session data in clipboard. Ctrl+V in any text editor.</p>
+    {/if}
   {/if}
-  <button on:click={login}>
-    Sign In with
-    <img
-      src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
-      class="logo"
-      alt="IMX logo"
-    />
-  </button>
 </div>
 
 <style>
