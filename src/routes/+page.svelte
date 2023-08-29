@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { login } from '../auth';
-	import { JsonView } from '@zerodevx/svelte-json-view';
 
 	let jsonData: string | null = null;
 	let showStatus: boolean = false;
@@ -40,27 +39,23 @@
 
 <div class="container dark-theme">
 	<h1 class="title">Base Template with Vite + SvelteKit + Immutable SDK + polyfills</h1>
-	<button on:click={login}>
-		Sign In with
-		<img
-			src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
-			class="logo"
-			alt="IMX logo"
-		/>
-	</button>
-	{#if showStatus}
-		<p class="status">Logged in. Session data in clipboard. Ctrl+V in any text editor.</p>
-	{/if}
+
 	{#if jsonData}
 		<button on:click={copyJsonToClipboard} class={showStatus ? 'hidden' : ''}>
-			Copy session token
-			<img
-				src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
-				class="logo"
-				alt="IMX logo"
-			/>
+			Copy session to clipboard
 		</button>
-		<JsonView {jsonData} />
+    {#if showStatus}
+		<p class="status">Logged in. Session data in clipboard. Ctrl+V in any text editor.</p>
+	  {/if}
+  {:else}
+    <button on:click={login}>
+      Sign In with
+      <img
+        src="https://assets-global.website-files.com/62535c6262b90afd768b9b26/62536a8f8dc259548c11d1a9_immutable-logo.svg"
+        class="logo"
+        alt="IMX logo"
+      />
+    </button>  
 	{/if}
 </div>
 
