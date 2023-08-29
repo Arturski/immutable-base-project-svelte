@@ -42,7 +42,6 @@
 	"type": "module",
 	"dependencies": {
 		"@imtbl/sdk": "^0.13.0",
-		"@magic-ext/oidc": "^2.3.1",
-		"@zerodevx/svelte-json-view": "^1.0.7"
+		"@magic-ext/oidc": "^2.3.1"
 	}
 }
